@@ -1,3 +1,5 @@
+@use "sass:math";
+
 /* ==========================================================================
    OBJECTS / LAYOUT
    ========================================================================== */
@@ -60,8 +62,8 @@ $use-markup-fix: false !default;
 // back to whaever spacing unit the project uses. We automatically calculate alt
 // spacing units but these can be manually set by the consumer.
 $supercell-spacing-unit: 24px !default;
-$supercell-spacing-unit-small: round($supercell-spacing-unit / 2) !default;
-$supercell-spacing-unit-large: round($supercell-spacing-unit * 2) !default;
+$supercell-spacing-unit-small: math.round(math.div($supercell-spacing-unit, 2)) !default;
+$supercell-spacing-unit-large: math.round($supercell-spacing-unit * 2) !default;
 
 /* Default/mandatory classes.
    =========================================== */
@@ -70,7 +72,7 @@ $supercell-spacing-unit-large: round($supercell-spacing-unit * 2) !default;
   padding: 0;
   list-style: none;
   box-sizing: border-box;
-  margin-left: -$supercell-spacing-unit;
+  margin-left: calc($supercell-spacing-unit * -1);
 
   @if ($use-markup-fix == false) {
     font-size: 0;
@@ -96,7 +98,7 @@ $supercell-spacing-unit-large: round($supercell-spacing-unit * 2) !default;
  * Smaller gutters between items.
  */
 .o-layout--narrow {
-  margin-left: -$supercell-spacing-unit-small;
+  margin-left: calc($supercell-spacing-unit-small * -1);
 
   > .o-layout__item {
     padding-left: $supercell-spacing-unit-small;
@@ -107,7 +109,7 @@ $supercell-spacing-unit-large: round($supercell-spacing-unit * 2) !default;
  * Larger gutters between items.
  */
 .o-layout--wide {
-  margin-left: -$supercell-spacing-unit-large;
+  margin-left: calc($supercell-spacing-unit-large * -1);
 
   > .o-layout__item {
     padding-left: $supercell-spacing-unit-large;

@@ -1,3 +1,5 @@
+@use "sass:math";
+
 // ==========================================================================
 // TOOLS / WIDTHS
 // ========================================================================== */
@@ -57,7 +59,7 @@
     @for $numerator from 1 through $denominator {
       // Build a class in the format `.u-width-3/4[@<breakpoint>]`.
       .u-width-#{$numerator}\/#{$denominator}#{$breakpoint} {
-        width: ($numerator / $denominator) * 100% !important;
+        width: calc(math.div($numerator, $denominator) * 100%) !important;
       }
 
       /**
@@ -68,13 +70,13 @@
       .u-push-#{$numerator}\/#{$denominator}#{$breakpoint} {
         position: relative;
         right: auto; /* [1] */
-        left: ($numerator / $denominator) * 100% !important;
+        left: calc(math.div($numerator, $denominator) * 100%) !important;
       }
 
       // Build a class in the format `.u-pull-5/6[@<breakpoint>]`.
       .u-pull-#{$numerator}\/#{$denominator}#{$breakpoint} {
         position: relative;
-        right: ($numerator / $denominator) * 100% !important;
+        right: calc(math.div($numerator, $denominator) * 100%) !important;
         left: auto; /* [1] */
       }
     }
